@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from tools import agent_tools
 from langchain_groq import ChatGroq
-from memory import recall, remember, forget
+from memory import recall, remember, forget, memory_tools
 import os
 
 load_dotenv()
@@ -34,7 +34,7 @@ Rules:
 - When the task is complete, summarize what you built and where the files are
 """
 
-llm_with_tools = llm.bind_tools(agent_tools)  
+llm_with_tools = llm.bind_tools(agent_tools + memory_tools)  
 
 from tools import create_file, read_file, edit_file, delete_file, list_directory, create_directory, run_terminal, run_python_file, install_package, check_python_version
 
