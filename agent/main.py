@@ -11,7 +11,7 @@ class Query(BaseModel):
 @api.post("/chat")
 async def chat(query: Query):
     result = []
-    for chunk in agent.stream({"message": [HumanMessage(content=query.query)]}):
+    for chunk in agent.stream({"messages": [HumanMessage(content=query.query)]}):
         for node, values in chunk.items():
             msg = values["messages"][-1]
             if msg.content:
